@@ -1,6 +1,6 @@
 //import utils class
 const utils = require('./../lib');
-const config = utils.pre(undefined, 'default:dark');
+const config = utils.pre('default:dark');
 module.exports = config;
 
 //
@@ -24,6 +24,7 @@ utils.group(utils.keys.screens, {
 utils.setAllSpacing({
   '-2': '-2px',
   '-4': '-4px',
+  '-54': '-14px',
   '2': '2px',
   '3': '3px',
   '10%': '10%',

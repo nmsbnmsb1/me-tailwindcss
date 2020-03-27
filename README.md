@@ -20,7 +20,7 @@
 //import utils class
 const path = require('path');
 const utils = require('me-tailwindcss');
-const config = utils.pre(undefined, 'default:dark', false);
+const config = utils.pre('default:dark', false, undefined);
 module.exports = config;
 
 //
@@ -194,7 +194,7 @@ node ./node_modules/tailwincss-utils/lib/exec-build-css.js --input ./index.css -
 
 ## API
 
-##### pre(baseConfigAbsPath, theme, important = false)
+##### pre(theme, important = false, baseConfigAbsPath = undefined)
 
 ```js
 /**
@@ -205,12 +205,12 @@ node ./node_modules/tailwincss-utils/lib/exec-build-css.js --input ./index.css -
  * Set width/height/minWidth/minHeight/maxWidth/maxHeight/padding/margin = spacing
  * Set separator = ":" and prefix = "tw-".It's for remove unused css classes with postcss-plugin-purgecss
  *
- * @param {string="tw-config-1.1.4.js"} baseConfigAbsPath Tailwindcss config file path relative to the project root path. Pass 'undefined' will use default config.
  * @param {string} theme Theme name. use 'default:' prefix to set theme as default. eg: "default:dark".If theme is default,the output css will have full css classes.otherwise it will only contains css variables.
  * @param {boolean=false} important same as Tailwindcss important option.
+ * @param {string} baseConfigAbsPath Tailwindcss config file path relative to the project root path. Pass 'undefined' will use default config.
  * @return {object} tailwindcss config object.
  */
-utils.pre(baseConfigAbsPath, theme, (important = false));
+utils.pre(theme, (important = false), (baseConfigAbsPath = undefined));
 ```
 
 ##### one(key, k, value)
