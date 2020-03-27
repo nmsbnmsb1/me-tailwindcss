@@ -19,14 +19,14 @@
 ```js
 //import utils class
 const path = require('path');
-const utils = require('tailwindcss-utils');
+const utils = require('me-tailwindcss');
 const config = utils.pre(undefined, 'default:dark', false);
 module.exports = config;
 
 //
 utils.addPlugins(
-  require(path.resolve('./node_modules/tailwindcss-utils/lib/tw-plugin-flex'))(),
-  require(path.resolve('./node_modules/tailwindcss-utils/lib/tw-plugin-newClasses'))([
+  require('me-tailwindcss/lib/tw-plugin-flex')(),
+  require('me-tailwindcss/lib/tw-plugin-newClasses')([
     // configKey,cssPrefix,css
     ['backgroundImages', 'bg-image', 'background-image'],
     ['backgrounds', 'bg', 'background'],
@@ -121,14 +121,14 @@ utils.setDefinedBgColors(
 ./index.css
 
 ```css
-@import 'tailwindcss-utils/lib/base';
+@import 'me-tailwindcss/lib/base';
 
 /* purgecss start ignore */
 @import './example1.css';
 /* purgecss end ignore */
 @import './example2.css';
 
-@import 'tailwindcss-utils/lib/tw';
+@import 'me-tailwindcss/lib/tw';
 ```
 
 > **NOTE:** import any css files between "base.css" and "tw.css" so that the tailwindcss-utilities-classes can override those defined before them.
@@ -160,7 +160,7 @@ const path = require('path');
 
 module.exports = {
   plugins: [
-    ...require(path.resolve('./node_modules/tailwindcss-utils/lib/postcss-config'))({
+    ...require('me-tailwindcss/lib/postcss-config')({
       tw: './tw-config.js',
       purge: true,
       mini: false,
