@@ -270,7 +270,7 @@ utils.setAllColors(map);
 utils.setAllSpacing(map);
 ```
 
-##### setDefinedTextColors(mainly, regular, secondary, placeholder, disabled, others)
+##### setDefinedTextColors(mainly, regular, ordinary, placeholder, disabled, others)
 
 ```js
 /**
@@ -300,12 +300,12 @@ utils.setAllSpacing(map);
  *
  * @param {any} mainly. mainly color
  * @param {any} regular. regular color
- * @param {any} secondary. secondary color
+ * @param {any} ordinary. ordinary color
  * @param {any} placeholder. placeholder color
  * @param {any} disabled. disabled color
  * @param {[k:string]:anyr} others. others...
  */
-utils.setDefinedTextColors(mainly, regular, secondary, placeholder, disabled, others);
+utils.setDefinedTextColors(mainly, regular, ordinary, placeholder, disabled, others);
 ```
 
 examples
@@ -378,30 +378,28 @@ The output of ./theme-dark.css will be
 ...
 ```
 
-##### setDefinedBorderColors(mainly, regular, secondary, disabled, others)
+##### setDefinedBorderColors(mainly, regular, ordinary, disabled, others)
 
 ```js
 /**
  * @param {any} mainly. mainly color
  * @param {any} regular. regular color
- * @param {any} secondary. secondary color
  * @param {any} disabled. disabled color
  * @param {[name:string]:anyr} others. others...
  */
-utils.setDefinedBorderColors(mainly, regular, secondary, disabled, others);
+utils.setDefinedBorderColors(mainly, regular, ordinary, disabled, others);
 ```
 
-##### setDefinedBgColors(mainly, regular, secondary, disabled, others)
+##### setDefinedBgColors(mainly, regular, ordinary, disabled, others)
 
 ```js
 /**
  * @param {any} mainly. mainly color
  * @param {any} regular. regular color
- * @param {any} secondary. secondary color
  * @param {any} disabled. disabled color
  * @param {[name:string]:anyr} others. others...
  */
-utils.setDefinedBgColors(mainly, regular, secondary, disabled, others);
+utils.setDefinedBgColors(mainly, regular, ordinary, disabled, others);
 ```
 
 ##### setTypeColor(type, color)
@@ -468,6 +466,8 @@ The output of ./theme-dark.css will be
   background-color: var(--success);
 }
 ```
+
+##### setDefinedTypeColors(primary, secondary, success, danger, warning, info, others)
 
 ##### getTheme(key, k)
 
