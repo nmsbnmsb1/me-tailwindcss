@@ -45,3 +45,8 @@ utils.setDefinedBgColors(
     placeholder: { var: '', val: { dark: '#f9fafe', light: '98a6ad' } },
   }
 );
+
+utils.group(utils.keys.fontSize, {
+  test: '100px',
+  test2: ['16px', '24px'],
+});

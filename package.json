@@ -13,11 +13,11 @@
     "css2": "node ./lib/cmd-build-css.js --input ./examples/index.css --tw ./examples/tw-config2.js --output ./examples/theme2.css"
   },
   "dependencies": {
-    "tailwindcss": "^1.2.0",
+    "tailwindcss": "^1.3.1",
     "postcss-import": "^12.0.1",
     "postcss-mixins": "^6.2.3",
     "postcss-extend-rule": "^3.0.0",
-    "postcss-advanced-variables": "^3.0.0",
+    "postcss-advanced-variables": "^3.0.1",
     "postcss-preset-env": "^6.7.0",
     "postcss-property-lookup": "^2.0.0",
     "postcss-nested": "^4.2.1",
