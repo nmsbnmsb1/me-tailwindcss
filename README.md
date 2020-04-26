@@ -14,7 +14,7 @@
 
 ### create config js
 
-./tw-config.js
+./tw.config.js
 
 ```js
 //import utils class
@@ -123,7 +123,7 @@ utils.setDefinedBgColors(
 ### inspect config
 
 ```bash
-node ./node_modules/tailwincss-utils/lib/cmd-inspect-tw-config.js --input ./tw-config.js --output ./tw-config.json
+node ./node_modules/tailwincss-utils/lib/cmd-inspect-tw-config.js --input ./tw.config.js --output ./tw.config.json
 ```
 
 ./package.json
@@ -131,7 +131,7 @@ node ./node_modules/tailwincss-utils/lib/cmd-inspect-tw-config.js --input ./tw-c
 ```json
 {
   "scripts": {
-    "tw": "inspect-tw-config --input ./tw-config.js --output ./tw-config.json"
+    "tw": "inspect-tw-config --input ./tw.config.js --output ./tw.config.json"
   }
 }
 ```
@@ -146,8 +146,8 @@ const path = require('path');
 module.exports = {
   plugins: [
     ...require('me-tailwindcss/lib/postcss-config')({
-      tw: './tw-config.js',
-      purge: true,
+      tw: './tw.config.js',
+      purge: {}, // set false to disable purge-css
       mini: false,
     }),
   ],
