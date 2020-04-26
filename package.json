@@ -24,7 +24,9 @@
     "postcss-property-lookup": "^2.0.0",
     "postcss-nested": "^4.2.1",
     "postcss-color-mod-function": "^3.0.3",
-    "cssnano": "^4.1.10"
+    "cssnano": "^4.1.10",
+    "purgecss": "^2.1.2",
+    "postcss-purgecss": "^2.0.3"
   },
   "devDependencies": {
     "prettier": "^1.19.1",
