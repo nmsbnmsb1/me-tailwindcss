@@ -20,12 +20,11 @@
 //import utils class
 const path = require('path');
 const utils = require('me-tailwindcss');
-const config = utils.pre('default:dark', false, undefined);
+const config = utils.pre('default:dark');
 module.exports = config;
 
 //
 utils.addPlugins(
-  require('me-tailwindcss/lib/tw-plugin-flex')(),
   require('me-tailwindcss/lib/tw-plugin-newClasses')([
     // configKey,cssPrefix,css
     ['backgroundImages', 'bg-image', 'background-image'],
@@ -42,7 +41,7 @@ utils.group(utils.keys.screens, {
 });
 
 /* Sizes -----------------------------------------------------------------------    */
-utils.setAllSpacing({
+utils.setAllKeys(utils.spacingKeys, {
   '-2': '-2px',
   '-4': '-4px',
   '2': '2px',
@@ -179,7 +178,7 @@ node ./node_modules/tailwincss-utils/lib/exec-build-css.js --input ./index.css -
 
 ## API
 
-##### pre(theme, important = false, baseConfigAbsPath = undefined)
+##### pre(theme, prefix = 'tw-', separator = ':', important = false, target = 'relaxed', parentConfig = undefined)
 
 ```js
 /**
@@ -191,11 +190,14 @@ node ./node_modules/tailwincss-utils/lib/exec-build-css.js --input ./index.css -
  * Set separator = ":" and prefix = "tw-".It's for remove unused css classes with postcss-plugin-purgecss
  *
  * @param {string} theme Theme name. use 'default:' prefix to set theme as default. eg: "default:dark".If theme is default,the output css will have full css classes.otherwise it will only contains css variables.
+ * @param {boolean=false} prefix same as Tailwindcss prefix option.
+ * @param {boolean=false} separator same as Tailwindcss separator option.
  * @param {boolean=false} important same as Tailwindcss important option.
- * @param {string} baseConfigAbsPath Tailwindcss config file path relative to the project root path. Pass 'undefined' will use default config.
+ * @param {boolean=false} target same as Tailwindcss target option.
+ * @param {string} parentConfig Tailwindcss config file path relative to the project root path. Pass 'undefined' will use default config.
  * @return {object} tailwindcss config object.
  */
-utils.pre(theme, (important = false), (baseConfigAbsPath = undefined));
+utils.pre(theme, (prefix = 'tw-'), (separator = ':'), (important = false), (target = 'relaxed'), (parentConfig = undefined));
 ```
 
 ##### one(key, k, value)
@@ -233,26 +235,16 @@ utils.one(key, k, value);
 utils.group(key, map);
 ```
 
-##### setAllColors(map)
+##### setAllKeys(keys,map)
 
 ```js
 /**
  * Set to colors/textColors/borderColors/backgroundColors
- *
+ * 
+ * @param {string} keys See utils.colorKeys/utils.spacingKeys/utils.opacityKeys
  * @param {[name:string]:number | string | { [theme:string]:number|string } | { var:string,val:number | string | { [theme:string]:number|string }}} map.
  */
-utils.setAllColors(map);
-```
-
-##### setAllSpacing(map)
-
-```js
-/**
- * Set to spacing/width/height/minWidth/minHeight/maxWidth/maxHeight/padding/margin
- *
- * @param {[name:string]:number | string | { [theme:string]:number|string } | { var:string,val:number | string | { [theme:string]:number|string }}} map.
- */
-utils.setAllSpacing(map);
+utils.setAllKeys(keys, map);
 ```
 
 ##### setDefinedTextColors(mainly, regular, ordinary, placeholder, disabled, others)
