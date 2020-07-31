@@ -1,5 +1,5 @@
 const resolveConfig = require('tailwindcss/resolveConfig');
 
-const config = require('./lib/tw-config-1.2.0');
+const config = require('tailwindcss/resolveConfig')(require('lodash/cloneDeep')(require('tailwindcss/stubs/defaultConfig.stub.js')));
 
-console.log(resolveConfig([config]));
+console.log(config);
