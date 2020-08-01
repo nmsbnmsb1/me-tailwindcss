@@ -4,7 +4,8 @@
   "main": "./lib/index.js",
   "bin": {
     "inspect-tw-config": "./lib/cmd-inspect-tw-config.js",
-    "build-css": "./lib/cmd-build-css.js"
+    "build-css": "./lib/cmd-build-css.js",
+    "tw-prefix-cleaner": "./lib/cmd-tw-prefix-cleaner.js"
   },
   "scripts": {
     "tw": "node ./lib/cmd-inspect-tw-config.js --input ./styles/tw.config.js --output ./tw.config.json",
