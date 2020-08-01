@@ -178,7 +178,7 @@ node ./node_modules/tailwincss-utils/lib/exec-build-css.js --input ./index.css -
 
 ## API
 
-##### pre(theme, prefix = 'tw-', separator = ':', important = false, target = 'relaxed', parentConfig = undefined)
+##### pre(theme, options = {}, parentConfig = undefined)
 
 ```js
 /**
@@ -190,14 +190,11 @@ node ./node_modules/tailwincss-utils/lib/exec-build-css.js --input ./index.css -
  * Set separator = ":" and prefix = "tw-".It's for remove unused css classes with postcss-plugin-purgecss
  *
  * @param {string} theme Theme name. use 'default:' prefix to set theme as default. eg: "default:dark".If theme is default,the output css will have full css classes.otherwise it will only contains css variables.
- * @param {boolean=false} prefix same as Tailwindcss prefix option.
- * @param {boolean=false} separator same as Tailwindcss separator option.
- * @param {boolean=false} important same as Tailwindcss important option.
- * @param {boolean=false} target same as Tailwindcss target option.
+ * @param {boolean=false} options prefix = 'tw-', separator = ':', important = false, target = 'relaxed'
  * @param {string} parentConfig Tailwindcss config file path relative to the project root path. Pass 'undefined' will use default config.
  * @return {object} tailwindcss config object.
  */
-utils.pre(theme, (prefix = 'tw-'), (separator = ':'), (important = false), (target = 'relaxed'), (parentConfig = undefined));
+utils.pre(theme, (options = {}), (parentConfig = undefined));
 ```
 
 ##### one(key, k, value)
