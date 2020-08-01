@@ -8,10 +8,10 @@
     "tw-prefix-cleaner": "./lib/cmd-tw-prefix-cleaner.js"
   },
   "scripts": {
-    "tw": "node ./lib/cmd-inspect-tw-config.js --input ./styles/tw.config.js --output ./tw.config.json",
-    "tw2": "node ./lib/cmd-inspect-tw-config.js --input ./styles/tw.config2.js --output ./tw.config2.json",
-    "css": "node ./lib/cmd-build-css.js --input ./styles/index.css --tw ./styles/tw.config.js --output ./dist/theme.css",
-    "css2": "node ./lib/cmd-build-css.js --input ./styles/index.css --tw ./styles/tw.config2.js --output ./dist/theme2.css",
+    "tw": "node ./lib/cmd-inspect-tw-config.js --input ./styles/tailwind.config.js --output ./tw.config.json",
+    "tw2": "node ./lib/cmd-inspect-tw-config.js --input ./styles/tailwind.config2.js --output ./tw.config2.json",
+    "css": "node ./lib/cmd-build-css.js --input ./styles/index.css --tw ./styles/tailwind.config.js --output ./dist/theme.css",
+    "css2": "node ./lib/cmd-build-css.js --input ./styles/index.css --tw ./styles/tailwind.config2.js --output ./dist/theme2.css",
     "css-post": "node ./lib/cmd-build-css.js --input ./styles/index.css --postcss ./postcss.config.js --output ./dist/theme-post.css",
     "prefix-clean": "node ./lib/cmd-tw-prefix-cleaner.js --input ./dist --prefix tw- "
   },

@@ -3015,9 +3015,11 @@
 			"responsive"
 		]
 	},
-	"purge": [],
+	"purge": {
+		"enabled": false
+	},
 	"target": "relaxed",
-	"prefix": false,
+	"prefix": "tw-",
 	"important": false,
 	"separator": ":",
 	"corePlugins": {},

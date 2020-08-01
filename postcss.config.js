@@ -2,7 +2,7 @@ module.exports = {
   plugins: [
     ...require('./lib/postcss-config')({
       //路径从项目根目录开始
-      tw: './styles/tw.config.js',
+      tw: './styles/tailwind.config.js',
       //路径从项目根目录开始
       purge: {
         //add new path
