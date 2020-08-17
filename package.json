@@ -5,15 +5,17 @@
   "bin": {
     "inspect-tw-config": "./lib/cmd-inspect-tw-config.js",
     "build-css": "./lib/cmd-build-css.js",
-    "tw-prefix-cleaner": "./lib/cmd-tw-prefix-cleaner.js"
+    "tw-prefix-cleaner": "./lib/cmd-tw-prefix-cleaner.js",
+    "tw-counter": "./lib/cmd-tw-class-counter.js"
   },
   "scripts": {
     "tw": "node ./lib/cmd-inspect-tw-config.js --input ./styles/tailwind.config.js --output ./tw.config.json",
     "tw2": "node ./lib/cmd-inspect-tw-config.js --input ./styles/tailwind.config2.js --output ./tw.config2.json",
-    "css": "node ./lib/cmd-build-css.js --input ./styles/index.css --tw ./styles/tailwind.config.js --output ./dist/theme.css",
-    "css2": "node ./lib/cmd-build-css.js --input ./styles/index.css --tw ./styles/tailwind.config2.js --output ./dist/theme2.css",
-    "css-post": "node ./lib/cmd-build-css.js --input ./styles/index.css --postcss ./postcss.config.js --output ./dist/theme-post.css",
-    "prefix-clean": "node ./lib/cmd-tw-prefix-cleaner.js --input ./dist --prefix tw- "
+    "css": "node ./lib/cmd-build-css.js --input ./styles/index.css --tw ./styles/tailwind.config.js --output ./build/theme.css",
+    "css2": "node ./lib/cmd-build-css.js --input ./styles/index.css --tw ./styles/tailwind.config2.js --output ./build/theme2.css",
+    "css-post": "node ./lib/cmd-build-css.js --input ./styles/index.css --postcss ./postcss.config.js --output ./build/theme-post.css",
+    "prefix-clean": "node ./lib/cmd-tw-prefix-cleaner.js --input ./build --prefix tw- ",
+    "tw-class-count": "node ./lib/cmd-tw-class-counter.js --css ./build/theme.css --input ./src --prefix tw- "
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",
@@ -28,7 +30,8 @@
     "postcss-nested": "^4.2.3",
     "postcss-color-mod-function": "^3.0.3",
     "purgecss": "^2.3.0",
-    "tailwindcss": "^1.6.0"
+    "tailwindcss": "^1.6.2",
+    "svg-sprite-loader": "^5.0.0"
   },
   "devDependencies": {
     "prettier": "^2.0.5",
