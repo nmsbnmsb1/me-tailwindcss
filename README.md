@@ -29,7 +29,15 @@ utils.addPlugins(
     // configKey,cssPrefix,css
     ['backgroundImages', 'bg-image', 'background-image'],
     ['backgrounds', 'bg', 'background'],
-  ])
+  ]),
+  require('me-tailwindcss/lib/tw-plugin-isVariants')({
+    autoCollect: false,
+    logAutoCollect: true,
+    //content: ['./examples/**/*.vue', './examples/**/*.ts'],
+    iss: {
+      //'is-primary': { 'tw-text-red': { variants: [], responsive: [] } },
+    },
+  })
 );
 
 //add some config
@@ -69,12 +77,12 @@ utils.group(utils.keys.boxShadow, {
 
 /* Text-Colors -----------------------------------------------------------------------    */
 utils.setDefinedTypeColors(
-  { var: '', val: { dark: [60, 40, 20, 10, '#2c7be5', 20, 50, 70, 90] } },
-  { var: '', val: { dark: [60, 40, 20, 10, '#9d7bd8', 20, 50, 70, 90] } },
-  { var: '', val: { dark: [0, 0, 0, 10, '#4caf50', 20, 50, 80, 90] } },
-  { var: '', val: { dark: [0, 0, 0, 10, '#e51c23', 20, 50, 80, 90] } },
-  { var: '', val: { dark: [0, 0, 0, 10, '#ff9800', 20, 50, 80, 90] } },
-  { var: '', val: { dark: [0, 0, 0, 10, '#47bac1', 20, 50, 80, 90] } }
+  { val: { dark: [[60, 0.7], 40, 20, 0, ['#2c7be5', 0.5, 0.1], 20, '#ff9800', 70, 90] } },
+  '#9d7bd8',
+  { val: '#4caf50' },
+  { val: [['#3c7be5', 0.5, 0.1]] },
+  { val: { dark: [0, 0, 0, 10, '#ff9800', 20, 50, 80, 90] } },
+  { val: { dark: [0, 0, 0, 10, '#47bac1', 20, 50, 80, 90] } }
 );
 utils.setDefinedTextColors(
   { var: '', val: { dark: [60, 40, 20, 10, '#737b81', 20, 50, 70, 90], light: [60, 40, 20, 10, '#737b81', 20, 50, 70, 90] } },
@@ -237,7 +245,7 @@ utils.group(key, map);
 ```js
 /**
  * Set to colors/textColors/borderColors/backgroundColors
- * 
+ *
  * @param {string} keys See utils.colorKeys/utils.spacingKeys/utils.opacityKeys
  * @param {[name:string]:number | string | { [theme:string]:number|string } | { var:string,val:number | string | { [theme:string]:number|string }}} map.
  */
@@ -257,7 +265,7 @@ utils.setAllKeys(keys, map);
  * @example  {dark:"#000000",light:"#ffffff"}
  *
  * 3.color-level-style.
- * @example [0, 40, 20, 10, "#409eff", 20, "#ff0000", 70, 90].
+ * @example [[60, 0.7], 40, 20, 0, ['#2c7be5', 0.5, 0.1], 20, '#ff9800', 70, 90].
  *          if value == 0 || value === undefined then ignore
  *          index 4 is default color.it should be a color string.
  *          if value is color string,then it will be set this color
@@ -266,6 +274,7 @@ utils.setAllKeys(keys, map);
  *            #000000 is defined in colors.black.see example below
  *          index 5-8 will use light-mod base on index 4 color.like `color-mod(#409eff blend(#ffffff} 20%))`
  *            #ffffff is defined in colors.white.see example below
+ *          value can be a array,first value is color string or number,next can set alpha value
  *
  * 4.css-varible-style.
  * @example {var:"--text-mainly",val{dark:"#000000",light:"#ffffff"}}
@@ -288,8 +297,8 @@ examples
 utils.setDefinedTextColors({
   var: '',
   val: {
-    dark: [60, 40, 20, 10, '#737b81', 20, 50, 70, 90],
-    light: [60, 40, 20, 10, '#737b81', 20, 50, 70, 90],
+    dark: [[60, 0.7], 40, 20, 0, ['#2c7be5', 0.5, 0.1], 20, '#ff9800', 70, 90],
+    light: [[60, 0.7], 40, 20, 0, ['#2c7be5', 0.5, 0.1], 20, '#ff9800', 70, 90],
   },
 });
 ```
@@ -305,27 +314,31 @@ The output of ./tw-config.js will be
     },
     "textColor":{
         "mainly": {
-          "100": "var(--text-mainly-100)",
-          "200": "var(--text-mainly-200)",
-          "300": "var(--text-mainly-300)",
-          "400": "var(--text-mainly-400)",
-          "600": "var(--text-mainly-600)",
-          "700": "var(--text-mainly-700)",
-          "800": "var(--text-mainly-800)",
-          "900": "var(--text-mainly-900)",
-          "default": "var(--text-mainly)"
+          "100": "var(--text-color-mainly-100)",
+          "200": "var(--text-color-mainly-200)",
+          "300": "var(--text-color-mainly-300)",
+          "600": "var(--text-color-mainly-600)",
+          "700": "var(--text-color-mainly-700)",
+          "800": "var(--text-color-mainly-800)",
+          "900": "var(--text-color-mainly-900)",
+          "100-07": "var(--text-color-mainly-100-07)",
+          "default": "var(--text-color-mainly)",
+          "05": "var(--text-color-mainly-05)",
+          "01": "var(--text-color-mainly-01)"
         }
     },
     "vars": {
-      "--text-mainly": "#737b81",
-      "--text-mainly-100": "color-mod(#737b81 blend(#000 60%))",
-      "--text-mainly-200": "color-mod(#737b81 blend(#000 40%))",
-      "--text-mainly-300": "color-mod(#737b81 blend(#000 20%))",
-      "--text-mainly-400": "color-mod(#737b81 blend(#000 10%))",
-      "--text-mainly-600": "color-mod(#737b81 blend(#fff 20%))",
-      "--text-mainly-700": "color-mod(#737b81 blend(#fff 50%))",
-      "--text-mainly-800": "color-mod(#737b81 blend(#fff 70%))",
-      "--text-mainly-900": "color-mod(#737b81 blend(#fff 90%))"
+      "--text-color-mainly-100": "color-mod(#2c7be5 blend(#ffffff 60%))",
+			"--text-color-mainly-100-07": "color-mod(color-mod(#2c7be5 blend(#ffffff 60%)) alpha(70%))",
+			"--text-color-mainly-200": "color-mod(#2c7be5 blend(#ffffff 40%))",
+			"--text-color-mainly-300": "color-mod(#2c7be5 blend(#ffffff 20%))",
+			"--text-color-mainly": "#2c7be5",
+			"--text-color-mainly-05": "color-mod(#2c7be5 alpha(50%))",
+			"--text-color-mainly-01": "color-mod(#2c7be5 alpha(10%))",
+			"--text-color-mainly-600": "color-mod(#2c7be5 blend(#000000 20%))",
+			"--text-color-mainly-700": "#ff9800",
+			"--text-color-mainly-800": "color-mod(#2c7be5 blend(#000000 70%))",
+			"--text-color-mainly-900": "color-mod(#2c7be5 blend(#000000 90%))",
     }
   }
 ```
@@ -334,20 +347,22 @@ The output of ./theme-dark.css will be
 
 ```css
 :root {
-  --text-mainly: #737b81;
-  --text-mainly-100: rgb(46, 49, 52);
-  --text-mainly-200: rgb(69, 74, 77);
-  --text-mainly-300: rgb(92, 98, 103);
-  --text-mainly-400: rgb(104, 111, 116);
-  --text-mainly-600: rgb(143, 149, 154);
-  --text-mainly-700: rgb(185, 189, 192);
-  --text-mainly-800: rgb(213, 215, 217);
-  --text-mainly-900: rgb(241, 242, 242);
+  --text-color-mainly-100: rgb(171, 202, 245);
+  --text-color-mainly-100-07: rgba(171, 202, 245, 0.7);
+  --text-color-mainly-200: rgb(128, 176, 239);
+  --text-color-mainly-300: rgb(86, 149, 234);
+  --text-color-mainly: #2c7be5;
+  --text-color-mainly-05: rgba(44, 123, 229, 0.5);
+  --text-color-mainly-01: rgba(44, 123, 229, 0.1);
+  --text-color-mainly-600: rgb(35, 98, 183);
+  --text-color-mainly-700: #ff9800;
+  --text-color-mainly-800: rgb(13, 37, 69);
+  --text-color-mainly-900: rgb(4, 12, 23);
 }
 
 .tw-text-mainly {
-  color: #737b81;
-  color: var(--text-mainly);
+  color: #2c7be5;
+  color: var(--text-color-mainly);
 }
 ...
 ```

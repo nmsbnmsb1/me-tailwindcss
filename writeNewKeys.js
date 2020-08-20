@@ -49,7 +49,11 @@ let code = fs.readFileSync(path.resolve('./lib/index.js')).toString();
 {
   let str = '';
   for (let k in config.theme) {
-    str += `    [utils.keys.${k}]: '${k.replace(/([A-Z])/g, '-$1').toLowerCase()}',\n`;
+    let val = `${k.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+    // if (k === 'textColor') val = 'text';
+    // else if (k === 'borderColor') val = 'border';
+    // else if (k === 'backgroundColor') val = 'bg';
+    str += `    [utils.keys.${k}]: '${val}',\n`;
   }
   str = str.substring(0, str.length - 1);
   //
