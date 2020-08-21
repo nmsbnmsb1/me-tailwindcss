@@ -58,7 +58,7 @@
 				"default": "var(--background-color-mainly)"
 			},
 			"regular": "#ffffff",
-			"ordinary": "#ffffff",
+			"minor": "#ffffff",
 			"disabled": "#ffffff",
 			"body": "var(--background-color-body)",
 			"placeholder": "var(--background-color-placeholder)"
@@ -137,7 +137,7 @@
 				"default": "var(--border-color-mainly)"
 			},
 			"regular": "#ffffff",
-			"ordinary": "#ffffff"
+			"minor": "#ffffff"
 		},
 		"borderOpacity": {
 			"0": "0",
@@ -1554,7 +1554,7 @@
 				"01": "var(--text-color-mainly-01)"
 			},
 			"regular": "#9d7bd8",
-			"ordinary": "var(--text-color-ordinary)",
+			"minor": "var(--text-color-minor)",
 			"placeholder": {
 				"default": "var(--text-color-placeholder)",
 				"05": "var(--text-color-placeholder-05)",
@@ -1704,7 +1704,7 @@
 			"--text-color-mainly-700": "#ff9800",
 			"--text-color-mainly-800": "color-mod(#2c7be5 blend(#000000 70%))",
 			"--text-color-mainly-900": "color-mod(#2c7be5 blend(#000000 90%))",
-			"--text-color-ordinary": "#4caf50",
+			"--text-color-minor": "#4caf50",
 			"--text-color-placeholder": "#3c7be5",
 			"--text-color-placeholder-05": "color-mod(#3c7be5 alpha(50%))",
 			"--text-color-placeholder-01": "color-mod(#3c7be5 alpha(10%))",

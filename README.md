@@ -252,7 +252,7 @@ utils.group(key, map);
 utils.setAllKeys(keys, map);
 ```
 
-##### setDefinedTextColors(mainly, regular, ordinary, placeholder, disabled, others)
+##### setDefinedTextColors(main, regular, sub, placeholder, disabled, others)
 
 ```js
 /**
@@ -277,18 +277,18 @@ utils.setAllKeys(keys, map);
  *          value can be a array,first value is color string or number,next can set alpha value
  *
  * 4.css-varible-style.
- * @example {var:"--text-mainly",val{dark:"#000000",light:"#ffffff"}}
- *          {var:"--text-mainly",val:[60, 40, 20, 10, "#409eff", 20, 50, 70, 90]}
- *          {var:"--text-mainly",val:{dark:[60, 40, 20, 10, "#409eff", 20, 50, 70, 90],light:"#ffffff"}}}
+ * @example {var:"--text-color-main",val{dark:"#000000",light:"#ffffff"}}
+ *          {var:"--text-color-main",val:[60, 40, 20, 10, "#409eff", 20, 50, 70, 90]}
+ *          {var:"--text-color-main",val:{dark:[60, 40, 20, 10, "#409eff", 20, 50, 70, 90],light:"#ffffff"}}}
  *
- * @param {any} mainly. mainly color
+ * @param {any} main. main color
  * @param {any} regular. regular color
- * @param {any} ordinary. ordinary color
+ * @param {any} sub. sub color
  * @param {any} placeholder. placeholder color
  * @param {any} disabled. disabled color
  * @param {[k:string]:anyr} others. others...
  */
-utils.setDefinedTextColors(mainly, regular, ordinary, placeholder, disabled, others);
+utils.setDefinedTextColors(main, regular, sub, placeholder, disabled, others);
 ```
 
 examples
@@ -314,31 +314,31 @@ The output of ./tw-config.js will be
     },
     "textColor":{
         "mainly": {
-          "100": "var(--text-color-mainly-100)",
-          "200": "var(--text-color-mainly-200)",
-          "300": "var(--text-color-mainly-300)",
-          "600": "var(--text-color-mainly-600)",
-          "700": "var(--text-color-mainly-700)",
-          "800": "var(--text-color-mainly-800)",
-          "900": "var(--text-color-mainly-900)",
-          "100-07": "var(--text-color-mainly-100-07)",
-          "default": "var(--text-color-mainly)",
-          "05": "var(--text-color-mainly-05)",
-          "01": "var(--text-color-mainly-01)"
+          "100": "var(--text-color-main-100)",
+          "200": "var(--text-color-main-200)",
+          "300": "var(--text-color-main-300)",
+          "600": "var(--text-color-main-600)",
+          "700": "var(--text-color-main-700)",
+          "800": "var(--text-color-main-800)",
+          "900": "var(--text-color-main-900)",
+          "100-07": "var(--text-color-main-100-07)",
+          "default": "var(--text-color-main)",
+          "05": "var(--text-color-main-05)",
+          "01": "var(--text-color-main-01)"
         }
     },
     "vars": {
-      "--text-color-mainly-100": "color-mod(#2c7be5 blend(#ffffff 60%))",
-			"--text-color-mainly-100-07": "color-mod(color-mod(#2c7be5 blend(#ffffff 60%)) alpha(70%))",
-			"--text-color-mainly-200": "color-mod(#2c7be5 blend(#ffffff 40%))",
-			"--text-color-mainly-300": "color-mod(#2c7be5 blend(#ffffff 20%))",
-			"--text-color-mainly": "#2c7be5",
-			"--text-color-mainly-05": "color-mod(#2c7be5 alpha(50%))",
-			"--text-color-mainly-01": "color-mod(#2c7be5 alpha(10%))",
-			"--text-color-mainly-600": "color-mod(#2c7be5 blend(#000000 20%))",
-			"--text-color-mainly-700": "#ff9800",
-			"--text-color-mainly-800": "color-mod(#2c7be5 blend(#000000 70%))",
-			"--text-color-mainly-900": "color-mod(#2c7be5 blend(#000000 90%))",
+      "--text-color-main-100": "color-mod(#2c7be5 blend(#ffffff 60%))",
+			"--text-color-main-100-07": "color-mod(color-mod(#2c7be5 blend(#ffffff 60%)) alpha(70%))",
+			"--text-color-main-200": "color-mod(#2c7be5 blend(#ffffff 40%))",
+			"--text-color-main-300": "color-mod(#2c7be5 blend(#ffffff 20%))",
+			"--text-color-main": "#2c7be5",
+			"--text-color-main-05": "color-mod(#2c7be5 alpha(50%))",
+			"--text-color-main-01": "color-mod(#2c7be5 alpha(10%))",
+			"--text-color-main-600": "color-mod(#2c7be5 blend(#000000 20%))",
+			"--text-color-main-700": "#ff9800",
+			"--text-color-main-800": "color-mod(#2c7be5 blend(#000000 70%))",
+			"--text-color-main-900": "color-mod(#2c7be5 blend(#000000 90%))",
     }
   }
 ```
@@ -347,27 +347,27 @@ The output of ./theme-dark.css will be
 
 ```css
 :root {
-  --text-color-mainly-100: rgb(171, 202, 245);
-  --text-color-mainly-100-07: rgba(171, 202, 245, 0.7);
-  --text-color-mainly-200: rgb(128, 176, 239);
-  --text-color-mainly-300: rgb(86, 149, 234);
-  --text-color-mainly: #2c7be5;
-  --text-color-mainly-05: rgba(44, 123, 229, 0.5);
-  --text-color-mainly-01: rgba(44, 123, 229, 0.1);
-  --text-color-mainly-600: rgb(35, 98, 183);
-  --text-color-mainly-700: #ff9800;
-  --text-color-mainly-800: rgb(13, 37, 69);
-  --text-color-mainly-900: rgb(4, 12, 23);
+  --text-color-main-100: rgb(171, 202, 245);
+  --text-color-main-100-07: rgba(171, 202, 245, 0.7);
+  --text-color-main-200: rgb(128, 176, 239);
+  --text-color-main-300: rgb(86, 149, 234);
+  --text-color-main: #2c7be5;
+  --text-color-main-05: rgba(44, 123, 229, 0.5);
+  --text-color-main-01: rgba(44, 123, 229, 0.1);
+  --text-color-main-600: rgb(35, 98, 183);
+  --text-color-main-700: #ff9800;
+  --text-color-main-800: rgb(13, 37, 69);
+  --text-color-main-900: rgb(4, 12, 23);
 }
 
 .tw-text-mainly {
   color: #2c7be5;
-  color: var(--text-color-mainly);
+  color: var(--text-color-main);
 }
 ...
 ```
 
-##### setDefinedBorderColors(mainly, regular, ordinary, disabled, others)
+##### setDefinedBorderColors(main, regular, sub, disabled, others)
 
 ```js
 /**
@@ -376,10 +376,10 @@ The output of ./theme-dark.css will be
  * @param {any} disabled. disabled color
  * @param {[name:string]:anyr} others. others...
  */
-utils.setDefinedBorderColors(mainly, regular, ordinary, disabled, others);
+utils.setDefinedBorderColors(main, regular, sub, disabled, others);
 ```
 
-##### setDefinedBgColors(mainly, regular, ordinary, disabled, others)
+##### setDefinedBgColors(main, regular, sub, disabled, others)
 
 ```js
 /**
@@ -388,7 +388,7 @@ utils.setDefinedBorderColors(mainly, regular, ordinary, disabled, others);
  * @param {any} disabled. disabled color
  * @param {[name:string]:anyr} others. others...
  */
-utils.setDefinedBgColors(mainly, regular, ordinary, disabled, others);
+utils.setDefinedBgColors(main, regular, sub, disabled, others);
 ```
 
 ##### setTypeColor(type, color)
