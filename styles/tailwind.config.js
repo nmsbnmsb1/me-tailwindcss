@@ -22,7 +22,7 @@ utils.addPlugins(
 );
 
 //colors
-utils.colorKeys.forEach((k) => utils.delete(k));
+//utils.colorKeys.forEach((k) => utils.delete(k));
 utils.setAllKeys(utils.colorKeys, { white: '#ffffff', black: '#000000' });
 utils.setDefinedTypeColors(
   { val: { dark: [[60, 0.7], 40, 20, 0, ['#2c7be5', 0.5, 0.1], 20, '#ff9800', 70, 90] } },
