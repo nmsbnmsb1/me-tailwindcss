@@ -27,10 +27,8 @@
     "postcss-advanced-variables": "^3.0.1",
     "postcss-preset-env": "^6.7.0",
     "postcss-property-lookup": "^2.0.0",
-    "postcss-nested": "^4.2.3",
-    "postcss-color-mod-function": "^3.0.3",
     "purgecss": "^2.3.0",
-    "tailwindcss": "^1.6.2",
+    "tailwindcss": "^1.7.4",
     "svg-sprite-loader": "^5.0.0"
   },
   "devDependencies": {
