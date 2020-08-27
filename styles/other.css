@@ -1,3 +1,11 @@
+:root{
+  --primary:#fff;
+}
+
 .ex-button {
   color: #ff0000;
+}
+
+.primary{
+  color:var(--main,var(--primary));
 }

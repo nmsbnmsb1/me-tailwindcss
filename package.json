@@ -11,7 +11,7 @@
   "scripts": {
     "tw": "node ./lib/cmd-inspect-tw-config.js --input ./styles/tailwind.config.js --output ./tw.config.json",
     "tw2": "node ./lib/cmd-inspect-tw-config.js --input ./styles/tailwind.config2.js --output ./tw.config2.json",
-    "css": "node ./lib/cmd-build-css.js --input ./styles/index.css --tw ./styles/tailwind.config.js --output ./build/theme.css",
+    "css": "node ./lib/cmd-build-css.js --input ./styles/index.css --tw ./styles/tailwind.config.js --output ./build/theme.css --postcss ./postcss.config.js",
     "css2": "node ./lib/cmd-build-css.js --input ./styles/index.css --tw ./styles/tailwind.config2.js --output ./build/theme2.css",
     "css-post": "node ./lib/cmd-build-css.js --input ./styles/index.css --postcss ./postcss.config.js --output ./build/theme-post.css",
     "prefix-clean": "node ./lib/cmd-tw-prefix-cleaner.js --input ./build --prefix tw- ",
@@ -28,11 +28,11 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-property-lookup": "^2.0.0",
     "purgecss": "^2.3.0",
-    "tailwindcss": "^1.7.4",
+    "tailwindcss": "^1.7.5",
     "svg-sprite-loader": "^5.0.0"
   },
   "devDependencies": {
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.1",
     "prettier-eslint": "^11.0.0",
     "prettier-tslint": "^0.4.2"
   }
