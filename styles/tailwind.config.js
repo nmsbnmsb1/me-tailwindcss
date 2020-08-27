@@ -1,7 +1,7 @@
 //import utils class
 const path = require('path');
 const utils = require('./../lib');
-const config = utils.pre('default:dark', false, undefined);
+const config = utils.pre('default:dark', { stage: 4 }, undefined);
 module.exports = config;
 
 //
@@ -54,6 +54,9 @@ utils.setDefinedBgColors(
     placeholder: { val: { dark: '#f9fafe', light: '98a6ad' } },
   }
 );
+utils.setColorVars({
+  fill: { val: { dark: [0, 0, 0, 0, ['#464f5b', 0.5], 0, 0, 0, '#2a3037'] } },
+});
 
 utils.group(utils.keys.fontSize, {
   test: '100px',

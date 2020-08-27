@@ -1,11 +1,18 @@
-:root{
-  --primary:#fff;
+:root {
+  --primary: #fff;
 }
 
 .ex-button {
   color: #ff0000;
 }
 
-.primary{
-  color:var(--main,var(--primary));
+.primary {
+  color: var(--main, var(--primary));
 }
+
+@define-mixin button-color-platte $colorname {
+  .btn-$(colorname) {
+    color: var(--btn-text-$(colorname), theme('stage.--$(colorname)'));
+  }
+}
+@mixin button-color-platte primary;
