@@ -28,7 +28,7 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-property-lookup": "^2.0.0",
     "purgecss": "^2.3.0",
-    "tailwindcss": "^1.7.5",
+    "tailwindcss": "^1.7.6",
     "svg-sprite-loader": "^5.0.0"
   },
   "devDependencies": {

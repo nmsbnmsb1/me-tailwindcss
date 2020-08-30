@@ -54,9 +54,6 @@ utils.setDefinedBgColors(
     placeholder: { val: { dark: '#f9fafe', light: '98a6ad' } },
   }
 );
-utils.setColorVars({
-  fill: { val: { dark: [0, 0, 0, 0, ['#464f5b', 0.5], 0, 0, 0, '#2a3037'] } },
-});
 
 utils.group(utils.keys.fontSize, {
   test: '100px',

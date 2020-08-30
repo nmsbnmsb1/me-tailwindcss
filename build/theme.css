@@ -631,7 +631,50 @@ video {
 }
 
 .btn-primary {
-  color: var(--primary);
+  color: var(--btn-text-primary, );
+}
+
+.modal {
+  background-color: black;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.modal {
+  color: red;
+}
+
+.icon-foo {
+  background: url('assets/icons/foo.png');
+  /* $c: ;
+      @if $colorname == primary {
+        $c: blue;
+      } @else {
+        $c: black;
+      }
+      color: $c; */
+}
+
+.icon-bar {
+  background: url('assets/icons/bar.png');
+  /* $c: ;
+      @if $colorname == primary {
+        $c: blue;
+      } @else {
+        $c: black;
+      }
+      color: $c; */
+}
+
+.icon-baz {
+  background: url('assets/icons/baz.png');
+  /* $c: ;
+      @if $colorname == primary {
+        $c: blue;
+      } @else {
+        $c: black;
+      }
+      color: $c; */
 }
 
 .tw-space-y-0 > :not(template) ~ :not(template) {
