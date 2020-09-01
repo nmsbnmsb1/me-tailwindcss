@@ -8,8 +8,7 @@ module.exports = config;
 utils.addPlugins(
   require('./../lib/tw-plugin-newClasses')([
     // configKey,cssPrefix,css
-    ['backgroundImages', 'bg-image', 'background-image'],
-    ['backgrounds', 'bg', 'background'],
+    // ['backgrounds', 'bg', 'background'],
   ]),
   require('./../lib/tw-plugin-isVariants')({
     autoCollect: false,

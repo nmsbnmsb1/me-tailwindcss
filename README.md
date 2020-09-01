@@ -52,8 +52,8 @@ utils.group(utils.keys.screens, {
 utils.setAllKeys(utils.spacingKeys, {
   '-2': '-2px',
   '-4': '-4px',
-  '2': '2px',
-  '3': '3px',
+  2: '2px',
+  3: '3px',
   '10%': '10%',
 });
 
@@ -458,7 +458,7 @@ The output of ./theme-dark.css will be
 
 ##### setDefinedTypeColors(primary, secondary, success, danger, warning, info, others)
 
-##### getTheme(key, k)
+##### getTheme(key)
 
 ##### getColorModCSS(a, b, p)
 
