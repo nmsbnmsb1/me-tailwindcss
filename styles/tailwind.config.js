@@ -57,4 +57,5 @@ utils.setDefinedBgColors(
 utils.group(utils.keys.fontSize, {
   test: '100px',
   test2: ['16px', '24px'],
+  15: '1.5rem',
 });
