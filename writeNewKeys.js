@@ -6,39 +6,64 @@ let code = fs.readFileSync(path.resolve('./lib/index.js')).toString();
 //替换基本的keys
 {
   const keys = {};
-  for (let k in config.theme) keys[k] = k;
-  let startMark = 'utils.keys = ';
+  for (const k in config.theme) keys[k] = k;
+  //
+  const startMark = 'utils.keys = ';
+  const startIndex = code.indexOf(startMark) + startMark.length;
+  const endIndex = code.indexOf('}', startIndex) + 1;
+  code = `${code.substring(0, startIndex)}${JSON.stringify(keys, undefined, 4)}${code.substring(endIndex)}`;
+}
+//替换 ColorKeys
+{
+  const keys = [];
+  for (const k in config.theme) {
+    if (k.toLowerCase().indexOf('color') >= 0) keys.push(`utils.keys.${k}`);
+  }
+  //
+  const startMark = 'utils.colorKeys = ';
+  const startIndex = code.indexOf(startMark) + startMark.length;
+  const endIndex = code.indexOf(']', startIndex) + 1;
+  code = `${code.substring(0, startIndex)}[${keys.join(',')}]${code.substring(endIndex)}`;
+}
+//替换 opacity
+{
+  const keys = [];
+  for (const k in config.theme) {
+    if (k.toLowerCase().indexOf('opacity') >= 0) keys.push(`utils.keys.${k}`);
+  }
+  //
+  const startMark = 'utils.opacityKeys = ';
+  const startIndex = code.indexOf(startMark) + startMark.length;
+  const endIndex = code.indexOf(']', startIndex) + 1;
+  code = `${code.substring(0, startIndex)}[${keys.join(',')}]${code.substring(endIndex)}`;
+}
+
+//替换 variants keys
+{
+  const keys = {};
+  for (const k in config.variants) keys[k] = k;
+  //
+  let startMark = 'utils.variantsKeys = ';
   let startIndex = code.indexOf(startMark) + startMark.length;
   let endIndex = code.indexOf('}', startIndex) + 1;
   code = `${code.substring(0, startIndex)}${JSON.stringify(keys, undefined, 4)}${code.substring(endIndex)}`;
 }
-
-//替换variants keys
+//替换 variantsValues
 {
   const keys = {};
-  for (let k in config.variants) keys[k] = k;
-  let startMark = 'utils.variantsKeys = ';
-  let startIndex = code.indexOf(startMark) + startMark.length;
-  let endIndex = code.indexOf('}', startIndex) + 1;
+  for (const k of config.variantOrder) keys[k] = k;
+  //
+  const startMark = 'utils.variantsValues = ';
+  const startIndex = code.indexOf(startMark) + startMark.length;
+  const endIndex = code.indexOf('}', startIndex) + 1;
   code = `${code.substring(0, startIndex)}${JSON.stringify(keys, undefined, 4)}${code.substring(endIndex)}`;
 }
 
 //替换 corePlugins keys
 {
   const keys = {};
-  {
-    let corePlugins = require('tailwindcss/lib/corePlugins');
-    let defined = corePlugins.default.toString();
-    let mark = 'return (0, _configurePlugins.default)(corePluginConfig, {';
-    let markIndex = defined.indexOf(mark) + mark.length;
-    defined = defined.substring(markIndex, defined.indexOf('}', markIndex));
-    let arr = defined.split(',');
-    for (let k of arr) {
-      let kk = k.split(':')[0].trim();
-      keys[kk] = kk;
-    }
-    //console.log(keys);
-  }
+  for (const pn of require('tailwindcss/lib/corePluginList').corePluginList) keys[pn] = pn;
+  //
   let startMark = 'utils.corePluginsKeys = ';
   let startIndex = code.indexOf(startMark) + startMark.length;
   let endIndex = code.indexOf('}', startIndex) + 1;

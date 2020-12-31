@@ -20,25 +20,25 @@
 //import utils class
 const path = require('path');
 const utils = require('me-tailwindcss');
-const config = utils.pre('default:dark');
+const config = utils.pre('default:dark', undefined, undefined);
 module.exports = config;
 
 //
-utils.addPlugins(
-  require('me-tailwindcss/lib/tw-plugin-newClasses')([
-    // configKey,cssPrefix,css
-    ['backgroundImages', 'bg-image', 'background-image'],
-    ['backgrounds', 'bg', 'background'],
-  ]),
-  require('me-tailwindcss/lib/tw-plugin-isVariants')({
-    autoCollect: false,
-    logAutoCollect: true,
-    //content: ['./examples/**/*.vue', './examples/**/*.ts'],
-    iss: {
-      //'is-primary': { 'tw-text-red': { variants: [], responsive: [] } },
-    },
-  })
-);
+// utils.addPlugins(
+//   require('me-tailwindcss/lib/tw-plugin-newClasses')([
+//     // configKey,cssPrefix,css
+//     ['backgroundImages', 'bg-image', 'background-image'],
+//     ['backgrounds', 'bg', 'background'],
+//   ]),
+//   require('me-tailwindcss/lib/tw-plugin-isVariants')({
+//     autoCollect: false,
+//     logAutoCollect: true,
+//     //content: ['./examples/**/*.vue', './examples/**/*.ts'],
+//     iss: {
+//       //'is-primary': { 'tw-text-red': { variants: [], responsive: [] } },
+//     },
+//   })
+// );
 
 //add some config
 /* Screen -----------------------------------------------------------------------    */
@@ -76,34 +76,30 @@ utils.group(utils.keys.boxShadow, {
 });
 
 /* Text-Colors -----------------------------------------------------------------------    */
-utils.setDefinedTypeColors(
-  { val: { dark: [[60, 0.7], 40, 20, 0, ['#2c7be5', 0.5, 0.1], 20, '#ff9800', 70, 90] } },
-  '#9d7bd8',
-  { val: '#4caf50' },
-  { val: [['#3c7be5', 0.5, 0.1]] },
-  { val: { dark: [0, 0, 0, 10, '#ff9800', 20, 50, 80, 90] } },
-  { val: { dark: [0, 0, 0, 10, '#47bac1', 20, 50, 80, 90] } }
-);
-utils.setDefinedTextColors(
-  { var: '', val: { dark: [60, 40, 20, 10, '#737b81', 20, 50, 70, 90], light: [60, 40, 20, 10, '#737b81', 20, 50, 70, 90] } },
-  '#ffffff',
-  '#ffffff',
-  { var: '', val: { dark: [60, 40, 20, 10, '#98a6ad', 20, 50, 70, 90], light: [60, 40, 20, 10, '#98a6ad', 20, 50, 70, 90] } },
-  '#ffffff'
-);
+//colors
+utils.setAllKeys(utils.colorKeys, { white: '#ffffff', black: '#000000' });
+utils.setDefinedTypeColors({
+  100: { dark: [60, 0.7] },
+  200: { dark: 40 },
+  300: 20,
+  DEFAULT: ['#2c7be5', 0.5, 0.1],
+  600: 20,
+  700: '#ff9800',
+  800: 70,
+  900: 90,
+});
+utils.setDefinedTextColors({ 100: [60, 0.7], 200: 40, 300: 20, DEFAULT: ['#2c7be5', 0.5, 0.1], 600: 20, 700: '#ff9800', 800: 70, 900: 90 });
 utils.setDefinedBorderColors(
-  { var: '', val: { dark: [60, 40, 20, 10, '#e6e6e6', 20, 50, 70, 90], light: [60, 40, 20, 10, '#e6e6e6', 20, 50, 70, 90] } },
-  '#ffffff',
-  '#ffffff'
+  { 100: [60, 0.7], 200: 40, 300: 20, DEFAULT: ['#e6e6e6', 0.5, 0.1], 600: 20, 700: '#ffff00', 800: 70, 900: 90 },
+  { DEFAULT: '#ffffff' }
 );
 utils.setDefinedBgColors(
-  { var: '', val: { dark: [60, 40, 20, 10, '#98a6ad', 20, 50, 70, 90], light: [60, 40, 20, 10, '#98a6ad', 20, 50, 70, 90] } },
-  '#ffffff',
-  '#ffffff',
-  '#ffffff',
+  { 100: [60, 0.7], 200: 40, 300: 20, DEFAULT: ['#e6e6e6', 0.5, 0.1], 600: 20, 700: '#ffff00', 800: 70, 900: 90 },
+  { DEFAULT: '#ffffff' },
+  { DEFAULT: '#ffffff' },
+  { DEFAULT: '#ffffff' },
   {
-    body: { var: '', val: { dark: '#f9fafe', light: '#f9fafe' } },
-    placeholder: { var: '', val: { dark: '#f9fafe', light: '98a6ad' } },
+    body: { DEFAULT: { dark: '#f9fafe', light: '#f9fafe' } },
   }
 );
 ```
@@ -153,8 +149,26 @@ const path = require('path');
 module.exports = {
   plugins: [
     ...require('me-tailwindcss/lib/postcss-config')({
-      tw: './tw.config.js',
-      purge: {}, // set false to disable purge-css
+      tw: {
+        path: './tw.config.js',
+        //set taildwindcss config
+        purge: {
+          enabled: true,
+          //mode: 'all',
+          preserveHtmlElements: true,
+          layers: ['components', 'utilities'],
+          content: [
+            './public/**/*.html',
+            './src/**/*.vue',
+            './src/**/*.js',
+            './src/**/*.ts',
+            './examples/**/*.vue',
+            './examples/**/*.js',
+            './examples/**/*.ts',
+          ],
+        },
+      },
+      purge: false, // set false to disable purge-css
       mini: false,
     }),
   ],
@@ -256,30 +270,11 @@ utils.setAllKeys(keys, map);
 
 ```js
 /**
- * Different ways to set color
- *
- * 1.normal.
- * @example "#ffffff"
- *
- * 2.theme-style.
- * @example  {dark:"#000000",light:"#ffffff"}
- *
- * 3.color-level-style.
- * @example [[60, 0.7], 40, 20, 0, ['#2c7be5', 0.5, 0.1], 20, '#ff9800', 70, 90].
- *          if value == 0 || value === undefined then ignore
- *          index 4 is default color.it should be a color string.
- *          if value is color string,then it will be set this color
- *          if value is number.
- *          index 0-3 will use dark-mod base on index 4 color. like `color-mod(#409eff blend(#000000} 10%))`
- *            #000000 is defined in colors.black.see example below
- *          index 5-8 will use light-mod base on index 4 color.like `color-mod(#409eff blend(#ffffff} 20%))`
- *            #ffffff is defined in colors.white.see example below
- *          value can be a array,first value is color string or number,next can set alpha value
- *
- * 4.css-varible-style.
- * @example {var:"--text-color-main",val{dark:"#000000",light:"#ffffff"}}
- *          {var:"--text-color-main",val:[60, 40, 20, 10, "#409eff", 20, 50, 70, 90]}
- *          {var:"--text-color-main",val:{dark:[60, 40, 20, 10, "#409eff", 20, 50, 70, 90],light:"#ffffff"}}}
+ * @example {
+ *            100: { dark: ( '#fee2e2' | ['#fee2e2',.7,.1] | 20 | [20,.5,.6] ),light ( '#fee2e2' | ['#fee2e2',.7,.1] | 20 | [20,.5,.6] ) }
+ *            DEFAULT: '#ef4444',
+ *            900: { dark: ( '#fee2e2' | ['#fee2e2',.7,.1] | 20 | [20,.5,.6] ),light ( '#fee2e2' | ['#fee2e2',.7,.1] | 20 | [20,.5,.6] ) }
+ *          }
  *
  * @param {any} main. main color
  * @param {any} regular. regular color
@@ -294,13 +289,7 @@ utils.setDefinedTextColors(main, regular, sub, placeholder, disabled, others);
 examples
 
 ```js
-utils.setDefinedTextColors({
-  var: '',
-  val: {
-    dark: [[60, 0.7], 40, 20, 0, ['#2c7be5', 0.5, 0.1], 20, '#ff9800', 70, 90],
-    light: [[60, 0.7], 40, 20, 0, ['#2c7be5', 0.5, 0.1], 20, '#ff9800', 70, 90],
-  },
-});
+utils.setDefinedTextColors({ 100: [60, 0.7], 200: 40, 300: 20, DEFAULT: ['#2c7be5', 0.5, 0.1], 600: 20, 700: '#ff9800', 800: 70, 900: 90 });
 ```
 
 The output of ./tw-config.js will be
@@ -313,32 +302,32 @@ The output of ./tw-config.js will be
       "white": "#fff",
     },
     "textColor":{
-        "mainly": {
-          "100": "var(--text-color-main-100)",
-          "200": "var(--text-color-main-200)",
-          "300": "var(--text-color-main-300)",
-          "600": "var(--text-color-main-600)",
-          "700": "var(--text-color-main-700)",
-          "800": "var(--text-color-main-800)",
-          "900": "var(--text-color-main-900)",
-          "100-07": "var(--text-color-main-100-07)",
-          "default": "var(--text-color-main)",
-          "05": "var(--text-color-main-05)",
-          "01": "var(--text-color-main-01)"
-        }
+        "main": {
+          "100": "var(--text-main-100)",
+          "200": "var(--text-main-200)",
+          "300": "var(--text-main-300)",
+          "600": "var(--text-main-600)",
+          "700": "var(--text-main-700)",
+          "800": "var(--text-main-800)",
+          "900": "var(--text-main-900)",
+          "100-a07": "var(--text-main-100-a07)",
+          "DEFAULT": "var(--text-main)",
+          "a05": "var(--text-main-a05)",
+          "a01": "var(--text-main-a01)"
+			  }
     },
     "vars": {
-      "--text-color-main-100": "color-mod(#2c7be5 blend(#ffffff 60%))",
-			"--text-color-main-100-07": "color-mod(color-mod(#2c7be5 blend(#ffffff 60%)) alpha(70%))",
-			"--text-color-main-200": "color-mod(#2c7be5 blend(#ffffff 40%))",
-			"--text-color-main-300": "color-mod(#2c7be5 blend(#ffffff 20%))",
-			"--text-color-main": "#2c7be5",
-			"--text-color-main-05": "color-mod(#2c7be5 alpha(50%))",
-			"--text-color-main-01": "color-mod(#2c7be5 alpha(10%))",
-			"--text-color-main-600": "color-mod(#2c7be5 blend(#000000 20%))",
-			"--text-color-main-700": "#ff9800",
-			"--text-color-main-800": "color-mod(#2c7be5 blend(#000000 70%))",
-			"--text-color-main-900": "color-mod(#2c7be5 blend(#000000 90%))",
+        "--text-main-100": "color-mod(#2c7be5 blend(#ffffff 60%))",
+        "--text-main-100-a07": "color-mod(color-mod(#2c7be5 blend(#ffffff 60%)) alpha(70%))",
+        "--text-main-200": "color-mod(#2c7be5 blend(#ffffff 40%))",
+        "--text-main-300": "color-mod(#2c7be5 blend(#ffffff 20%))",
+        "--text-main-600": "color-mod(#2c7be5 blend(#000000 20%))",
+        "--text-main-700": "#ff9800",
+        "--text-main-800": "color-mod(#2c7be5 blend(#000000 70%))",
+        "--text-main-900": "color-mod(#2c7be5 blend(#000000 90%))",
+        "--text-main": "#2c7be5",
+        "--text-main-a05": "color-mod(#2c7be5 alpha(50%))",
+        "--text-main-a01": "color-mod(#2c7be5 alpha(10%))",
     }
   }
 ```
@@ -347,22 +336,21 @@ The output of ./theme-dark.css will be
 
 ```css
 :root {
-  --text-color-main-100: rgb(171, 202, 245);
-  --text-color-main-100-07: rgba(171, 202, 245, 0.7);
-  --text-color-main-200: rgb(128, 176, 239);
-  --text-color-main-300: rgb(86, 149, 234);
-  --text-color-main: #2c7be5;
-  --text-color-main-05: rgba(44, 123, 229, 0.5);
-  --text-color-main-01: rgba(44, 123, 229, 0.1);
-  --text-color-main-600: rgb(35, 98, 183);
-  --text-color-main-700: #ff9800;
-  --text-color-main-800: rgb(13, 37, 69);
-  --text-color-main-900: rgb(4, 12, 23);
+  --text-main-100: rgb(171, 202, 245);
+  --text-main-100-a07: rgba(171, 202, 245, 0.7);
+  --text-main-200: rgb(128, 176, 239);
+  --text-main-300: rgb(86, 149, 234);
+  --text-main-600: rgb(35, 98, 183);
+  --text-main-700: #ff9800;
+  --text-main-800: rgb(13, 37, 69);
+  --text-main-900: rgb(4, 12, 23);
+  --text-main: #2c7be5;
+  --text-main-a05: rgba(44, 123, 229, 0.5);
+  --text-main-a01: rgba(44, 123, 229, 0.1);
 }
 
-.tw-text-mainly {
-  color: #2c7be5;
-  color: var(--text-color-main);
+.tw-text-main {
+  color: var(--text-main);
 }
 ...
 ```
@@ -371,7 +359,7 @@ The output of ./theme-dark.css will be
 
 ```js
 /**
- * @param {any} mainly. mainly color
+ * @param {any} main. mainly color
  * @param {any} regular. regular color
  * @param {any} disabled. disabled color
  * @param {[name:string]:anyr} others. others...
@@ -392,69 +380,6 @@ utils.setDefinedBgColors(main, regular, sub, disabled, others);
 ```
 
 ##### setTypeColor(type, color)
-
-```js
-/**
- * Set color to colors/textColor/borderColor/backgroundColor
- *
- * @param {string} type.
- * @param {any} color.
- */
-utils.setTypeColor(type, color);
-```
-
-examples
-
-```js
-utils.setTypeColor('success', {
-  var: '',
-  val: {
-    dark: [0, 0, 0, 0, '#67C23A', 0, 0, 0, 0],
-    light: [0, 0, 0, 0, '#67C23A', 0, 0, 0, 0],
-  },
-});
-```
-
-The output of ./tw-config.js will be
-
-```json
-{
-  "theme": {
-    "colors": {
-      "success": { "default": "var(--success)" }
-    },
-    "textColor":{
-      "success": { "default": "var(--success)" }
-    },
-    "borderColor":{
-      "success": { "default": "var(--success)" }
-    },
-    "backgroundColor":{
-      "success": { "default": "var(--success)" }
-    },
-    "vars": { "--success": "#67C23A" }
-  }
-```
-
-The output of ./theme-dark.css will be
-
-```css
-:root {
-  --success: #67c23a;
-}
-.tw-text-success {
-  color: #67c23a;
-  color: var(--success);
-}
-.tw-border-success {
-  border-color: #67c23a;
-  border-color: var(--success);
-}
-.tw-bg-success {
-  background-color: #67c23a;
-  background-color: var(--success);
-}
-```
 
 ##### setDefinedTypeColors(primary, secondary, success, danger, warning, info, others)
 

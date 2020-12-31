@@ -4,7 +4,8 @@ module.exports = {
       //路径从项目根目录开始
       //tw: './styles/tailwind.config.js',
       tw: {
-        path: './styles/tailwind.config.js',
+        path: './styles/tailwind.config2.js',
+        //purge: { enabled: false },
       },
       //
       'postcss-preset-env': {
