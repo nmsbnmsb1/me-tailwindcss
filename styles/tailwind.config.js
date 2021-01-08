@@ -2,23 +2,22 @@ const utils = require('./../lib');
 module.exports = utils.pre('default:dark', undefined, undefined);
 
 //
-utils.addPlugins(
-  require('./../lib/tw-plugin-newClasses')([
-    // configKey,cssPrefix,css
-    // ['backgrounds', 'bg', 'background'],
-  ]),
-  require('./../lib/tw-plugin-isVariants')({
-    autoCollect: false,
-    logAutoCollect: true,
-    //content: ['./examples/**/*.vue', './examples/**/*.ts'],
-    iss: {
-      //'is-primary': { 'tw-text-red': { variants: [], responsive: [] } },
-    },
-  })
-);
+// utils.addPlugins(
+//   require('./../lib/tw-plugin-newClasses')([
+//     // configKey,cssPrefix,css
+//     // ['backgrounds', 'bg', 'background'],
+//   ]),
+//   require('./../lib/tw-plugin-isVariants')({
+//     autoCollect: false,
+//     logAutoCollect: true,
+//     //content: ['./examples/**/*.vue', './examples/**/*.ts'],
+//     iss: {
+//       //'is-primary': { 'tw-text-red': { variants: [], responsive: [] } },
+//     },
+//   })
+// );
 
 //colors
-utils.setAllKeys(utils.colorKeys, { white: '#ffffff', black: '#000000' });
 utils.setDefinedTypeColors({
   100: { dark: [60, 0.7] },
   200: { dark: 40 },

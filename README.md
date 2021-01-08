@@ -198,6 +198,42 @@ node ./node_modules/tailwincss-utils/lib/exec-build-css.js --input ./index.css -
 <div class="tw-text-xss tw-text-mainly-200">字体2</div>
 ```
 
+### The default config
+
+> **NOTE:** for performance.The initiazlied config only enabled these core-plugins
+
+```js
+utils.config.corePlugins = [
+  utils.corePluginsKeys.preflight,
+  utils.corePluginsKeys.backgroundColor,
+  utils.corePluginsKeys.borderColor,
+  utils.corePluginsKeys.borderRadius,
+  utils.corePluginsKeys.borderStyle,
+  utils.corePluginsKeys.borderWidth,
+  utils.corePluginsKeys.display,
+  utils.corePluginsKeys.flex,
+  utils.corePluginsKeys.flexGrow,
+  utils.corePluginsKeys.flexShrink,
+  utils.corePluginsKeys.fontFamily,
+  utils.corePluginsKeys.fontWeight,
+  utils.corePluginsKeys.height,
+  utils.corePluginsKeys.fontSize,
+  utils.corePluginsKeys.lineHeight,
+  utils.corePluginsKeys.margin,
+  utils.corePluginsKeys.padding,
+  utils.corePluginsKeys.boxShadow,
+  utils.corePluginsKeys.textColor,
+  utils.corePluginsKeys.width,
+];
+
+//user setCorePlugin setVariants to enabled other core-plugin or set variants
+utils.setCorePlugin(utils.corePluginsKeys.space, true);
+utils.setCorePlugin(utils.corePluginsKeys.width, false);
+
+utils.setVariants(utils.variantsKeys.boxShadow, [utils.variantsValues.first, utils.variantsValues.last]);
+utils.setVariants(utils.variantsKeys.textColor, { [utils.variantsValues.visited]: 1 });
+```
+
 ## API
 
 ##### pre(theme, options = {}, parentConfig = undefined)
@@ -218,6 +254,10 @@ node ./node_modules/tailwincss-utils/lib/exec-build-css.js --input ./index.css -
  */
 utils.pre(theme, (options = {}), (parentConfig = undefined));
 ```
+
+##### setCorePlugin(key, enabled)
+
+##### setVariants(key, vs)
 
 ##### one(key, k, value)
 

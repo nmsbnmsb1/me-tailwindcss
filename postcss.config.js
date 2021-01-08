@@ -5,6 +5,7 @@ module.exports = {
       //tw: './styles/tailwind.config.js',
       tw: {
         path: './styles/tailwind.config.js',
+        purge: { enabled: false },
       },
       //
       'postcss-preset-env': {
