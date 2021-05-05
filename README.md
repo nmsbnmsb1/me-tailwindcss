@@ -1,6 +1,7 @@
 # me-tailwindcss
 
 > A utility to build css files depend on [TailwindCSS](https://tailwindcss.com/).
+> vue + vite 2 + tailwindcss JIT mode
 
 ## Features
 
@@ -20,7 +21,7 @@
 //import utils class
 const path = require('path');
 const utils = require('me-tailwindcss');
-const config = utils.pre('default:dark', undefined, undefined);
+const config = utils.pre('dark', undefined, undefined);
 module.exports = config;
 
 //
@@ -110,18 +111,12 @@ utils.setDefinedBgColors(
 
 ```css
 @import 'me-tailwindcss/lib/base';
-
-/* purgecss start ignore */
 @import './example1.css';
-/* purgecss end ignore */
 @import './example2.css';
-
 @import 'me-tailwindcss/lib/tw';
 ```
 
 > **NOTE:** import any css files between "base.css" and "tw.css" so that the tailwindcss-utilities-classes can override those defined before them.
-
-> **NOTE:** add "purgecss start ignore" and "purgecss end ignore" to disable purge-css.
 
 ### inspect config
 
@@ -149,26 +144,10 @@ const path = require('path');
 module.exports = {
   plugins: [
     ...require('me-tailwindcss/lib/postcss-config')({
-      tw: {
+      tailwindcss: {
         path: './tw.config.js',
-        //set taildwindcss config
-        purge: {
-          enabled: true,
-          //mode: 'all',
-          preserveHtmlElements: true,
-          layers: ['components', 'utilities'],
-          content: [
-            './public/**/*.html',
-            './src/**/*.vue',
-            './src/**/*.js',
-            './src/**/*.ts',
-            './examples/**/*.vue',
-            './examples/**/*.js',
-            './examples/**/*.ts',
-          ],
-        },
+        purge: ['./public/**/*.html', './index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
       },
-      purge: false, // set false to disable purge-css
       mini: false,
     }),
   ],
@@ -226,12 +205,9 @@ utils.config.corePlugins = [
   utils.corePluginsKeys.width,
 ];
 
-//user setCorePlugin setVariants to enabled other core-plugin or set variants
+//user setCorePlugin to enabled other core-plugin
 utils.setCorePlugin(utils.corePluginsKeys.space, true);
 utils.setCorePlugin(utils.corePluginsKeys.width, false);
-
-utils.setVariants(utils.variantsKeys.boxShadow, [utils.variantsValues.first, utils.variantsValues.last]);
-utils.setVariants(utils.variantsKeys.textColor, { [utils.variantsValues.visited]: 1 });
 ```
 
 ## API
@@ -256,8 +232,6 @@ utils.pre(theme, (options = {}), (parentConfig = undefined));
 ```
 
 ##### setCorePlugin(key, enabled)
-
-##### setVariants(key, vs)
 
 ##### one(key, k, value)
 

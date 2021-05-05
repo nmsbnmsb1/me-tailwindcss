@@ -1,11 +1,13 @@
+//process.env.NODE_ENV
+
+//路径从项目根目录开始
 module.exports = {
   plugins: [
     ...require('./lib/postcss-config')({
       //路径从项目根目录开始
-      //tw: './styles/tailwind.config.js',
-      tw: {
-        path: './styles/tailwind.config.js',
-        purge: { enabled: false },
+      //tailwindcss: './styles/tailwind.config.js',
+      tailwindcss: {
+        path: './src/styles/tailwind.config.js',
       },
       //
       'postcss-preset-env': {
@@ -15,9 +17,7 @@ module.exports = {
           //'custom-properties': { preserve: false },
         },
       },
-      //路径从项目根目录开始
-      purge: false,
-      mini: false,
+      mini: process.env.NODE_ENV === 'production',
     }),
   ],
 };
